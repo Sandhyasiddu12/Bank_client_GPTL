@@ -12,26 +12,26 @@ class check_out_form(check_out_formTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.names= 'K-12 Educational loan'
-    user_request = app_tables.product_borrower.get(names=self.names)
-    interest_rate = user_request['interest_rate']
-    self.int_rate.text=f" Interest rate : {interest_rate} %"
+    
+    if self.names == 'K-12 Educational loan':
+     user_request = app_tables.product_borrower.get(names=self.names)
+     interest_rate = user_request['interest_rate']
+     self.int_rate.text=f" Interest rate : {interest_rate} %"
     #processing_fee_percentage = 0.05  # 5% processing fee
    
-  value=self.loan_type_dd.selected_value 
-  if value=="K-12 Educational loan":
+  
 
     
-    self.coustmer_id = 1000
+     self.coustmer_id = 1000
 
        
         # Fetch the data for the specific user from your table
-    user_request = app_tables.user_profile.get(coustmer_id=self.coustmer_id)
+     user_request = app_tables.user_profile.get(coustmer_id=self.coustmer_id)
    
     
    
       
-    if user_request:
+     if user_request:
             min_amount = float(user_request['min_amount'])  # Convert to float
             tenure = float(user_request['tenure'])  # Convert to float
             max_amount = float(user_request['max_amount'])  # Convert to float
@@ -56,12 +56,12 @@ class check_out_form(check_out_formTemplate):
           # Display EMI in a label
             self.emi_details.text = f"EMI Details: {emi:.2f}"  # Display EMI rounded to two decimal places
 
-    else:
+     else:
             self.trp_amount.text = f"User {self.user_id} not found or data not available."
             self.int_rate.text = f"Interest Rate :{interest_rate} pa" 
             self.pro_fee.text = f"Processing Fee : {processing_fee}"
-  else: 
-    self.names= ' business loan '
+    else: 
+     self.names= ' business loan '
     user_request = app_tables.product_borrower.get(names=self.names)
     interest_rate = user_request['interest_rate']
     self.int_rate.text=f" Interest rate : {interest_rate} %"
