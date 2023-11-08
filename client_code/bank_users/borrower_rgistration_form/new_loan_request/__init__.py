@@ -13,9 +13,11 @@ class new_loan_request(new_loan_requestTemplate):
     
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+   
+
 
     # Any code you write here will run before the form opens.
-    min_amount=self.min_amount
+    min_amount=self.min_amount.text
     max_amount=self.max_amount
     tenure = self.tenure.selected_value
     anvil.server.call('add_user_profile',min_amount,max_amount,tenure)

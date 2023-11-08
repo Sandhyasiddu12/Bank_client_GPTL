@@ -183,7 +183,7 @@ db_schema:
       admin_ui: {width: 200}
       type: bool
   product_borrower:
-    client: none
+    client: full
     server: full
     columns:
     - name: names

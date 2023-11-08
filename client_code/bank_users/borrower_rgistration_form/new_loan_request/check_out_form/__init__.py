@@ -66,7 +66,7 @@ class check_out_form(check_out_formTemplate):
     interest_rate = user_request['interest_rate']
     self.int_rate.text=f" Interest rate : {interest_rate} %"
     processing_fee_percentage = 0.05  # 5% processing fee
-    self.coustmer_id = 1000
+    self.coustmer_id = row[0]['coustmer_id']
         # Fetch the data for the specific user from your table
     user_request = app_tables.user_profile.get(coustmer_id=self.coustmer_id)
     if user_request:
