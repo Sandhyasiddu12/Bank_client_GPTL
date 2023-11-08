@@ -24,9 +24,9 @@ class loan_type(loan_typeTemplate):
   def button_2_click(self, **event_args):
     open_form('bank_users.borrower_rgistration_form.new_loan_request')
 
-  def drop_down_1_change(self, **event_args):
+  def loan_type_dd_change(self, **event_args):
 
-    value=self.drop_down_1.selected_value 
+    value=self.loan_type_dd.selected_value 
     if value=="K-12 Educational loan":
       open_form('bank_users.borrower_rgistration_form.new_loan_request.k12_loan')
     else:
