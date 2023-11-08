@@ -18,7 +18,7 @@ class new_loan_request(new_loan_requestTemplate):
     min_amount=self.min_amount
     max_amount=self.max_amount
     tenure = self.tenure.selected_value
-    anvil.server.call('add_user_profile',min_amount,max_amount,tenure,)
+    anvil.server.call('add_user_profile',min_amount,max_amount,tenure)
    # self.coustmer_id = 1000
     #user_request = app_tables.user_profile.get(coustmer_id=self.coustmer_id)
     #max_amount = user_request['max_amount']
