@@ -5,6 +5,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+from datetime import datetime
 
 
 
@@ -61,6 +62,7 @@ def add_user_profile(min_amount, tenure, max_amount):
      min_amount=min_amount,
      tenure=tenure,
      max_amount=max_amount,
+     timestamp=datetime.now()
   
   )
 
