@@ -140,6 +140,9 @@ db_schema:
     - name: tenure
       admin_ui: {width: 200}
       type: string
+    - name: timestamp
+      admin_ui: {width: 200, order: 31}
+      type: datetime
     title: user_profile
   borrower:
     title: borrower

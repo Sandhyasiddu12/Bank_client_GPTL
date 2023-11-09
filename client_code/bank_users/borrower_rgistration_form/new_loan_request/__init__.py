@@ -13,14 +13,26 @@ class new_loan_request(new_loan_requestTemplate):
     
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-   
+    all_requests = app_tables.user_profile.search()
+
+    if all_requests:
+            most_recent_request = None
+
+            for request in all_requests:
+                if most_recent_request is None or request['timestamp'] > most_recent_request['timestamp']:
+                    most_recent_request = request
+
+            self.coustmer_id = most_recent_request['coustmer_id']
+    user_request = app_tables.user_profile.get(coustmer_id=self.coustmer_id)
+    max_amount = user_request['max_amount']
+    self.max_amount.text=f"{max_amount}"
 
 
     # Any code you write here will run before the form opens.
     min_amount=self.min_amount.text
-    max_amount=self.max_amount
-    tenure = self.tenure.selected_value
-    anvil.server.call('add_user_profile',min_amount,max_amount,tenure)
+    max_amount=self.max_amount.text
+    tenure=self.tenure_dd.selected_value
+    anvil.server.call('add_user_profile', min_amount, max_amount, tenure)
    # self.coustmer_id = 1000
     #user_request = app_tables.user_profile.get(coustmer_id=self.coustmer_id)
     #max_amount = user_request['max_amount']

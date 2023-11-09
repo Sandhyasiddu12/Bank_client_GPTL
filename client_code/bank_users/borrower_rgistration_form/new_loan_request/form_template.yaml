@@ -72,7 +72,7 @@ components:
     bold: false
     underline: false
     include_placeholder: true
-  name: tenure
+  name: tenure_dd
   layout_properties:
     col_widths: {}
     grid_position: XAMTRF,DVEKRQ
