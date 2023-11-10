@@ -12,9 +12,7 @@ class check_out_business(check_out_businessTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    # Any code you write here will run before the form opens.
-    self.names = ' Business loan '
+    self.names = 'business loan'
     user_request = app_tables.product_borrower.get(names=self.names)
 
     if user_request:
@@ -23,38 +21,38 @@ class check_out_business(check_out_businessTemplate):
     else:
             self.int_rate.text = "Interest rate not found."
 
-            all_requests = app_tables.user_profile.search()
+    all_requests = app_tables.user_profile.search()
 
     if all_requests:
-            most_recent_request = None
+              most_recent_request = None
 
-            for request in all_requests:
-                if most_recent_request is None or request['timestamp'] > most_recent_request['timestamp']:
+              for request in all_requests:
+                  if most_recent_request is None or request['timestamp'] > most_recent_request['timestamp']:
                     most_recent_request = request
 
-            self.coustmer_id = most_recent_request['coustmer_id']
-            min_amount = most_recent_request['min_amount']
-            tenure = most_recent_request['tenure']
-            max_amount = most_recent_request['max_amount']
+                  self.coustmer_id = most_recent_request['coustmer_id']
+                  min_amount = most_recent_request['min_amount']
+                  tenure = most_recent_request['tenure']
+                  max_amount = most_recent_request['max_amount']
 
-            min_amount = float(min_amount)  # Convert to float
-            tenure = float(tenure)  # Convert to float
-            max_amount = float(max_amount)
+                  min_amount = float(min_amount)  # Convert to float
+                  tenure = float(tenure)  # Convert to float
+                  max_amount = float(max_amount)
 
-            total_repayment = min_amount + (min_amount * (interest_rate / 100) * tenure)
-            self.trp_amount.text = f"Total Repayment Amount : {total_repayment}"
+                  total_repayment = min_amount + (min_amount * (interest_rate / 100) * tenure)
+                  self.trp_amount.text = f"Total Repayment Amount : {total_repayment}"
 
-            P = float(total_repayment)
-            r = float(interest_rate) / 12 / 100
-            n = int(tenure)
+                  P = float(total_repayment)
+                  r = float(interest_rate) / 12 / 100
+                  n = int(tenure)
 
-            emi = P * r * (1 + r)**n / ((1 + r)**n - 1)
-            processing_fee = min_amount * tenure * (interest_rate / 100)
-            self.pro_fee.text = f"Processing fee : {processing_fee}"
+                  emi = P * r * (1 + r)**n / ((1 + r)**n - 1)
+                  processing_fee = min_amount * tenure * (interest_rate / 100)
+                  self.pro_fee.text = f"Processing fee : {processing_fee}"
 
-            self.emi_details.text = f"EMI Details: {emi:.2f}"
+                  self.emi_details.text = f"EMI Details: {emi:.2f}"
     else:
-            self.trp_amount.text = "No user profile data available."
+       self.trp_amount.text = "No user profile data available."
 
     # Any code you write here will run before the form opens.
 
